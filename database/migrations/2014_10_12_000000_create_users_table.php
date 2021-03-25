@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->nullable();
             $table->string('mobile')->unique();
-            $table->string('password');
+            $table->string('password')->bcrypt('12345');
             $table->integer('otp')->nullable();
             $table->rememberToken();
             $table->timestamps();
