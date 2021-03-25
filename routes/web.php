@@ -27,3 +27,5 @@ Route::get('loginWithOtp', function () {
 
 Route::post('sendOtp', 'UserController@sendOtp');
 Route::post('newregister', 'UserController@register')->name('newregister');
+
+Route::get('/send-mail', 'UserController@sendMail')->name('mail');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
@@ -61,6 +62,14 @@ class UserController extends Controller
         $otp = rand(1000,9999);
         Log::info("otp = ".$otp);
         $user = User::where('mobile','=',$request->mobile)->update(['otp' => $otp]);
+
+        $details = [
+            'title' => 'OTP for Login',
+            'body' => $otp
+
+        ];
+        \Mail::to('rock.oronno@gmail.com')->send(new \App\Mail\TestMail($details));
+
         // send otp to mobile no using sms api
         return response()->json([$user],200);
     }
